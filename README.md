@@ -1,70 +1,96 @@
-# Projeto User Management
+# 🖥️ node-clean-testing
 
-Este projeto é um exemplo de sistema para gerenciamento de usuários, utilizando TypeScript com arquitetura limpa (Clean Architecture), incluindo validações, repositórios e casos de uso.
+Repositório de estudo e prática com foco em **testes unitários**, **integração** e **E2E**, utilizando **Node.js**, **TypeScript**, **Jest**, princípios **SOLID** e boas práticas de arquitetura como **DDD** e **Clean Architecture**.
 
-## Tecnologias
+---
 
-- TypeScript
-- Node.js
-- Jest (testes)
-- class-validator (validação de entidades)
-- uuid (geração de IDs únicos)
-- Arquitetura limpa com separação entre domain, application e infrastructure
+## 🚀 Tecnologias Utilizadas
 
-## Estrutura do Projeto
+- **Node.js** com TypeScript
+- **Arquitetura Limpa (Clean Architecture)**
+- **Domain-Driven Design (DDD)**
+- **Princípios SOLID**
+- **Jest** para testes unitários, de integração e e2e
+- **class-validator** para validação de entidades
+- **uuid** para geração de identificadores únicos
+- **Express.js** na camada de interface HTTP
+- **ESLint + Prettier** para código limpo e padronizado
 
-- **domain**: contém as entidades e contratos (interfaces) dos repositórios.
-- **application**: casos de uso da aplicação (ex: CreateUser).
-- **infrastructure**: implementação dos repositórios (ex: InMemoryUserRepository).
-- **tests**: testes unitários para casos de uso e repositórios.
+---
 
-## Entidades Principais
+## 🧱 Estrutura do Projeto
 
-### User
+O projeto segue uma estrutura modular e escalável com responsabilidade bem definida em cada camada:
 
-A entidade `User` representa o usuário, com as propriedades:
+- `domain`: entidades e interfaces (ex: `User`, `IUserRepository`)
+- `application`: casos de uso (ex: `CreateUser`, `DeleteUser`)
+- `infrastructure`: repositórios e configs (ex: `InMemoryUserRepository`)
+- `interfaces`: entrada/saída HTTP, controladores, rotas e middlewares
+- `main`: inicialização da aplicação
+- `shared`: classes e utilitários reutilizáveis (ex: `NotFoundError`)
+- `tests`: testes unitários, integração e e2e com Jest
 
-- `id`: UUID gerado automaticamente ou recebido no construtor.
-- `name`: string não vazia.
-- `email`: string com formato válido de email.
+---
 
-Validações são feitas usando decorators do `class-validator`.
+## ✅ Casos de Uso Implementados
 
-## Casos de Uso
+- `CreateUser`: Criação de novo usuário com validações e verificação de email duplicado.
+- `GetUserById`: Busca por usuário usando o ID.
+- `ListUsers`: Lista todos os usuários cadastrados.
+- `UpdateUser`: Atualiza dados de um usuário.
+- `DeleteUser`: Remove um usuário existente.
 
-### CreateUser
+---
 
-Caso de uso responsável por criar um usuário, garantindo:
+## 🧍‍♂️ Entidade `User`
 
-- Validação dos dados do usuário.
-- Checagem para evitar emails duplicados.
-- Persistência do usuário no repositório.
+Entidade central do domínio da aplicação, com validações realizadas via `class-validator`.
 
-## Repositórios
+### Propriedades:
 
-### IUserRepository
+- `id`: UUID (gerado automaticamente, se ausente)
+- `name`: obrigatório, não vazio
+- `email`: obrigatório, com formato válido
 
-Interface que define métodos para manipulação de usuários, como:
+---
 
-- `findById(id: string): Promise<User | null>`
-- `findByEmail(email: string): Promise<User | null>`
-- `add(user: User): Promise<void>`
+## 🧪 Testes Automatizados
 
-### InMemoryUserRepository
+A suíte de testes cobre diferentes camadas do sistema:
 
-Implementação em memória para facilitar testes.
+### 🔹 Testes Unitários
 
-## Testes
+- Casos de uso
+- Entidades
+- Repositórios em memória
 
-Testes unitários com Jest cobrem:
+### 🔹 Testes de Integração
 
-- Criação de usuários válidos.
-- Evitar duplicação de emails.
-- Recuperação de usuários por id e email.
-- Comportamento do repositório em memória.
+- Testes das rotas HTTP com Express
 
-## Como rodar os testes
+### 🔹 Testes de Fim a Fim (E2E)
+
+- Simulação completa de fluxos da aplicação
+
+### Executar testes:
 
 ```bash
 npm install
 npm test
+```
+
+## 📋 Requisitos
+
+- Node.js >= 18.x
+- npm ou yarn
+- TypeScript
+
+## 💡 Boas Práticas Aplicadas
+
+- Separação de responsabilidades (SRP)
+- Inversão de dependências via interfaces
+- Repositório em memória para testes isolados
+- Validações explícitas nas entidades
+- Lint e formatação com ESLint + Prettier
+
+Made with 💚 by [Eric Crozatti Ferreira](https://www.linkedin.com/in/eric-crozatti-1447688a/)
