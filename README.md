@@ -68,10 +68,6 @@ A suíte de testes cobre diferentes camadas do sistema:
 
 - Testes das rotas HTTP com Express
 
-### 🔹 Testes de Fim a Fim (E2E)
-
-- Simulação completa de fluxos da aplicação
-
 ### Executar testes:
 
 ```bash
