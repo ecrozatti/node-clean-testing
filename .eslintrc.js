@@ -13,10 +13,9 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier', // Desliga regras que conflitam com o prettier
+    'prettier',
   ],
   rules: {
     'prettier/prettier': 'error',
-    // suas regras customizadas aqui
   },
 };
